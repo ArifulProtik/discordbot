@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord import Member
 from discord.ext.commands import has_permissions, CheckFailure, MissingPermissions
 from dotenv import load_dotenv
+from helper import gettext
 import os
 
 load_dotenv() 
@@ -14,7 +15,7 @@ bot = commands.Bot(command_prefix='$', intents=intents)
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='Room(0) [$]'))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='Room(0) [$h]'))
     print('We have logged in as {0.user}'.format(bot))
 
 
@@ -79,6 +80,16 @@ async def clean(ctx, amount=5):
         await ctx.channel.purge(limit=amount)
     except:
         await ctx.send("You don't have permission")
+
+@bot.command()
+async def h(ctx):
+    text = gettext()
+    embed = discord.Embed(
+        title=f"Help",
+        description=text,
+        color=discord.Color.green(),
+        ).set_footer(text="from BungaBot By Room(0)")
+    await ctx.send(embed=embed)
 
 
 

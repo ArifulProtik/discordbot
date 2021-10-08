@@ -1,0 +1,8 @@
+Working Commands:
+
+1: Kick a Member 
+        ```$kick [mention a User]``` 
+2: Ban a Member
+        ```$ban [mention a User]```
+3: Delete Messeges
+        ```$clean [amount of Messeges]```
