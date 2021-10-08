@@ -45,6 +45,8 @@ async def on_message(message):
 
 
 
+
+## Ban And Kick
 @bot.command()
 @has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member=None, *, reason=None):
@@ -72,6 +74,10 @@ async def ban(ctx, member: discord.Member=None, *, reason=None):
         await ctx.send(f"{member} banned From the Server")
     except:
         await ctx.send("You Dont Have permission to Kick or Ban")
+
+
+
+# Clean Messages 
 @bot.command()
 @commands.has_permissions(manage_messages=True)
 async def clean(ctx, amount=5):
@@ -81,6 +87,8 @@ async def clean(ctx, amount=5):
     except:
         await ctx.send("You don't have permission")
 
+
+# Custom Embeded helper
 @bot.command()
 async def h(ctx):
     text = gettext()
@@ -90,14 +98,12 @@ async def h(ctx):
         color=discord.Color.green(),
         ).set_footer(text="from BungaBot By Room(0)")
     await ctx.send(embed=embed)
-
-
-
-
-
-
-
-
+@bot.command()
+async def spam(ctx, member: discord.User, amount=0, *, msg):
+    if msg == "":
+        ctx.send("You Have to send a Msg")
+    for i in range(amount):
+        await member.send(msg)
 
 
 bot.run(os.getenv('KEY'))
