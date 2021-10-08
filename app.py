@@ -71,6 +71,15 @@ async def ban(ctx, member: discord.Member=None, *, reason=None):
         await ctx.send(f"{member} banned From the Server")
     except:
         await ctx.send("You Dont Have permission to Kick or Ban")
+@bot.command()
+@commands.has_permissions(manage_messages=True)
+async def clean(ctx, amount=5):
+    print("clean invoked")
+    try:
+        await ctx.channel.purge(limit=amount)
+    except:
+        await ctx.send("You don't have permission")
+
 
 
 
