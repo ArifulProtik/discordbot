@@ -104,6 +104,13 @@ async def spam(ctx, member: discord.User, amount=0, *, msg):
         ctx.send("You Have to send a Msg")
     for i in range(amount):
         await member.send(msg)
+@bot.command()
+@has_permissions(kick_members=True)
+async def change(ctx, member: discord.Member, nick):
+    await member.edit(nick=nick)
+    await ctx.send("Nickname Changed")
+
+
 
 
 bot.run(os.getenv('KEY'))
